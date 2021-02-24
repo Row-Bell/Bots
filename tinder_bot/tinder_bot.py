@@ -62,15 +62,20 @@ class TinderBot():
     
     #Swipe right!
     def like(self):
+        swipe_right= self.driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div/main/div/div[1]/div[1]/div[2]/div[4]/button')
         sleep(2)
-        swipe_right = self.driver.find_element_by_class_name("button Lts($ls-s) Z(0) CenterAlign Mx(a) Cur(p) Tt(u) Bdrs(50%) P(0) Fw($semibold) focus-button-style Bxsh($bxsh-btn) Expand D(b) Bgc(#fff) Trstf(e) Trsdu($normal) Wc($transform) Pe(a) Scale(1.1):h Scale(.9):a")
-        swipe_right.click()
-     
+        swipe_right.click()  
     #Swipe left!
     def dislike(self):
         swipe_left = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div/main/div/div[1]/div[1]/div[2]/div[2]/button')
         swipe_left.click()
         
+    def autoswipe(self):
+        while True:
+            sleep(0.5)
+            self.dislike()
+        
 bot = TinderBot()
 bot.login()
-bot.like()
+
+
