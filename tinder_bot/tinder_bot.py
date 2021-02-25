@@ -50,7 +50,7 @@ class TinderBot():
         #switching focus from the pop-up login window back to the basewindow
         self.driver.switch_to_window(base_window)
         
-        sleep(3)
+        sleep(5)
         popup_1 = self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div[3]/button[1]')
         popup_1.click()
         
@@ -62,18 +62,32 @@ class TinderBot():
     
     #Swipe right!
     def like(self):
-        swipe_right= self.driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div/main/div/div[1]/div[1]/div[2]/div[4]/button')
-        sleep(2)
-        swipe_right.click()  
+        sleep(5)
+        sr= self.driver.find_element_by_xpath('//*[@id="t-1801132545"]/div/div[1]/div/main/div[1]/div/div/div[1]/div[1]/div[2]/div[4]/button')
+        sleep(5)
+        sr.click()  
     #Swipe left!
     def dislike(self):
-        swipe_left = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div/main/div/div[1]/div[1]/div[2]/div[2]/button')
-        swipe_left.click()
+        #sleep(5)
+        sl = self.driver.find_element_by_xpath('//*[@id="t-1801132545"]/div/div[1]/div/main/div[1]/div/div/div[1]/div[1]/div[2]/div[2]/button')
+        #sleep(5)
+        sl.click()
         
     def autoswipe(self):
         while True:
             sleep(0.5)
-            self.dislike()
+            try:
+                self.like()
+            except Exception:
+                self.close_popup()
+                
+            
+    def close_popup(self):
+        popup_3 = self.driver.find_element_by_xpath('//*[@id="t--239073259"]/div/div/div[2]/button[2]')
+        popup_3.click()
+        
+    #def close_match(self):
+    #    match_popup = self.driver.find_element_by_xpath('')
         
 bot = TinderBot()
 bot.login()
