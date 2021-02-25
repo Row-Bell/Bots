@@ -77,15 +77,27 @@ class TinderBot():
         while True:
             sleep(0.5)
             try:
-                self.like()
-            except Exception:
-                self.close_popup()
+                self.dislike()
+                sleep(0.5)
                 
-            
+            except Exception:
+                try:
+                    self.like()
+                except Exception:
+                    try:
+                        self.close_popup()
+       
+                    except Exception:
+                        self.out_of_likes_pop_up()              
+                            
     def close_popup(self):
         popup_3 = self.driver.find_element_by_xpath('//*[@id="t--239073259"]/div/div/div[2]/button[2]')
         popup_3.click()
-        
+                
+    def out_of_likes_pop_up(self):
+        popup_4 = self.driver.find_element_by_xpath('//*[@id="t--239073259"]/div/div/div[3]/button[2]')
+        popup_4.click()
+                                                    
     #def close_match(self):
     #    match_popup = self.driver.find_element_by_xpath('')
         
